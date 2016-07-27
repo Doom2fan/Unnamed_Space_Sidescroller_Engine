@@ -1,0 +1,23 @@
+{
+    "name": "dsfmlgame",
+    "version": "1.0.0",
+    "description": "A sidescroller made with DSFML.",
+    "copyright": "Copyright (C) 2016, Chronos Ouroboros",
+    "authors": ["Chronos Ouroboros"],
+    "license": "GPL-2.0",
+    "targetType": "executable",
+    "targetPath": "bin",
+    "sourcePaths": [ "src" ],
+
+    "lflags": [ "+lib\\" ],
+
+    "dependencies": {
+        "dsfml": "~>2.3",
+        "chr_tools": ">=1.0.0"
+    },
+
+    "copyFiles-windows": [
+        "resources",
+        "DLLs/*"
+    ]
+}
