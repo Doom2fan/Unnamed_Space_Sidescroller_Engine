@@ -35,6 +35,8 @@ PlayerPawn player;
 
 /++ Initializes the playsim ++/
 void gameInit () {
+    writeln ("Initializing static tables");
+    FixedMath.generateTables ();
     writeln ("Initializing playsim");
     derp = new Texture ();
     if (!derp.loadFromFile ("resources/derp.png")) {
@@ -71,8 +73,8 @@ void updateGame (Duration elapsedTime) {
     // Get player input
     player.sidewaysInput = 0; player.forwardInput = 0;
     if (Joystick.isConnected (0)) {
-        player.sidewaysInput = Joystick.getAxisPosition (0, Joystick.Axis.X);
-        player.forwardInput = -Joystick.getAxisPosition (0, Joystick.Axis.Y);
+        player.sidewaysInput =  Joystick.getAxisPosition (0, Joystick.Axis.X);
+        player.forwardInput  = -Joystick.getAxisPosition (0, Joystick.Axis.Y);
     }
 
     if (Keyboard.isKeyPressed (Keyboard.Key.W) || Keyboard.isKeyPressed (Keyboard.Key.Up))
@@ -84,9 +86,12 @@ void updateGame (Duration elapsedTime) {
         player.sidewaysInput += 100;
     if (Keyboard.isKeyPressed (Keyboard.Key.A) || Keyboard.isKeyPressed (Keyboard.Key.Left))
         player.sidewaysInput += -100;
+
+    if (Keyboard.isKeyPressed (Keyboard.Key.Escape))
+        core.stdc.stdlib.exit (0);
     
-    player.xVel = (player.sidewaysInput / 100.0f) * 15;
-    player.yVel = (player.forwardInput / 100.0f) * -10;
+    player.xVel = (player.sidewaysInput / 100) * 15;
+    player.yVel = (player.forwardInput  / 100) * -10;
 
     // Tick actors
     foreach (obj; ActorList) {
