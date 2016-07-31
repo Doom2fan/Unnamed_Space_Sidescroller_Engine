@@ -96,7 +96,7 @@ void renderGame (Duration ticTime, Duration elapsedTime) {
         plasmaClock.restart ();
 
     if (fpsClock.getElapsedTime ().total!"seconds" >= 1) {
-        int avgRT = cast (int) avgRenderTime.total!"msecs" / framesPerSec;
+        int avgRT = cast (int) (avgRenderTime.total!"msecs" / framesPerSec);
         fpsText.setString (format ("%s\n%s", framesPerSec, framesPerSec > 0 ? to!string (avgRT) : "???"));
 
         avgRenderTime = Duration.zero;
