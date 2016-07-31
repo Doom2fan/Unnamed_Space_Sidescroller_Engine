@@ -25,7 +25,7 @@ public import dsfml.system;
 public import chr_tools.fixedpoint;
 
 alias Fixed!(int,  16) accum;   /// Alias for a fixed-point value with 16 fractional bits
-alias Fixed!(long, 24) accumL;  /// Alias for a fixed-point value with 24 fractional bits
+alias Fixed!(int,  24) accumL;  /// Alias for a fixed-point value with 24 fractional bits
 alias Fixed!(long, 32) accumLL; /// Alias for a fixed-point value with 32 fractional bits
 
 // Ticker values
