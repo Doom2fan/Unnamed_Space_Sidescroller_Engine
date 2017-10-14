@@ -79,7 +79,7 @@ class SpriteParticle : Particle {
 class ParticleSystem : Drawable, Transformable {
     mixin NormalTransformable;
 
-    private {
+    protected {
         Particle [] pointParticles;
         SpriteParticle [] [Sprite] spriteParticles;
         Mt19937 rng;
@@ -140,7 +140,7 @@ class ParticleSystem : Drawable, Transformable {
         }
     }
 
-    private void spawnParticles (T) (ref T [] endPoint, T base, int amount, Vector2f loc, Vector2f dir) {
+    protected void spawnParticles (T) (ref T [] endPoint, T base, int amount, Vector2f loc, Vector2f dir) {
         T [] pList;
 
         pList.length = amount;
@@ -149,10 +149,10 @@ class ParticleSystem : Drawable, Transformable {
             float ang = uniform (dir.x, dir.y, rng);
 
             pList [i] = new T (base);
-            pList [i].x = loc.x - uniform (-1.0f, 1.0f, rng);
-            pList [i].y = loc.y - uniform (-1.0f, 1.0f, rng);
-            pList [i].xVel = base.speed * cos (ang * (PI / 180));
-            pList [i].yVel = base.speed * sin (ang * (PI / 180));
+            pList [i].X = cast (accum) (loc.x - uniform (-1.0f, 1.0f, rng));
+            pList [i].Y = cast (accum) (loc.y - uniform (-1.0f, 1.0f, rng));
+            pList [i].XVel = cast (accum) (base.speed * cos (ang * (PI / 180)));
+            pList [i].YVel = cast (accum) (base.speed * sin (ang * (PI / 180)));
         }
 
         int j = 0;
@@ -183,7 +183,7 @@ class ParticleSystem : Drawable, Transformable {
         }
     }
 
-    private void tickInternal (T) (ref T [] particleList) {
+    protected void tickInternal (T) (ref T [] particleList) {
         for (uint i = 0; i < particleList.length; i++) {
             // If the index is null, skip it
             if (!particleList [i])
@@ -222,7 +222,7 @@ class ParticleSystem : Drawable, Transformable {
             if (!p)
                 continue;
 
-            ppVertices [index].position = Vector2f (cast (float) p.x, cast (float) p.y);
+            ppVertices [index].position = Vector2f (cast (float) p.X, cast (float) p.Y);
             ppVertices [index].color = p.color;
             index++;
         }

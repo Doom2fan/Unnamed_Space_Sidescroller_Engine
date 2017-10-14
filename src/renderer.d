@@ -123,7 +123,7 @@ void renderGame (Duration ticTime, Duration elapsedTime) {
             }
 
             RenderStates sprStates = RenderStates ();
-            sprStates.transform.translate (cast (float) (actor.x - actor.width / 2.0f), cast (float) (actor.y - actor.height / 2.0f));
+            sprStates.transform.translate (cast (float) (actor.X - actor.width / 2.0f), cast (float) (actor.Y - actor.height / 2.0f));
             mainWindow.draw (actor.spr, sprStates);
             if (drawBoundingBoxes && actor.width > 0 && actor.height > 0) {
                 RectangleShape boundRect = new RectangleShape (Vector2f ((cast (float) actor.width) - 1.0f, (cast (float) actor.height) - 1.0f));

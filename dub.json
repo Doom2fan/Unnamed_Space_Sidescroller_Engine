@@ -9,7 +9,14 @@
     "targetPath": "bin",
     "sourcePaths": [ "src" ],
 
-    "lflags": [ "+lib\\" ],
+    "lflags": [
+        "+lib\\",
+        "+dsfmlc-audio",
+        "+dsfmlc-graphics",
+        "+dsfmlc-network",
+        "+dsfmlc-system",
+        "+dsfmlc-window",
+    ],
 
     "dependencies": {
         "dsfml": "~>2.3",

@@ -26,6 +26,7 @@ import dsfml.window;
 import gameDefs;
 import actorDef;
 import particleSys;
+static import core.stdc.stdlib;
 
 Texture derp;
 Sprite derp1; Sprite derp2; Sprite derp3;
@@ -60,7 +61,7 @@ void gameInit () {
     PlayerList ~= player;
 
     Actor monstah = new Actor ();
-    monstah.x = 320; monstah.y = 200;
+    monstah.X = cast (accum) 320; monstah.Y = cast (accum) 200;
     monstah.width = 57; monstah.height = 20;
     monstah.changeStateList (testStates, testStateLabels);
     ActorList ~= monstah;
@@ -90,8 +91,8 @@ void updateGame (Duration elapsedTime) {
     if (Keyboard.isKeyPressed (Keyboard.Key.Escape))
         core.stdc.stdlib.exit (0);
     
-    player.xVel = (player.sidewaysInput / 100) * 15;
-    player.yVel = (player.forwardInput  / 100) * -10;
+    player.XVel = (player.sidewaysInput / 100) * 15;
+    player.YVel = (player.forwardInput  / 100) * -10;
 
     // Tick actors
     foreach (obj; ActorList) {
