@@ -1,0 +1,9 @@
+{
+    "name": "dsfmlgame",
+    "description": "A sidescroller made with DSFML.",
+    "projects": {
+        "dsfmlgame": "dub.json"
+    },
+    "includePath": {
+    }
+}
